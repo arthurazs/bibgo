@@ -5,8 +5,6 @@ import (
 	"strings"
 )
 
-var b2i = map[bool]int{false: 0, true: 1}
-
 func NextEntry(bib strings.Reader) (strings.Reader, error) {
 	var buffer []byte = make([]byte, 1)
 	var entry strings.Builder = strings.Builder{}
@@ -25,12 +23,16 @@ func NextEntry(bib strings.Reader) (strings.Reader, error) {
 		entry.Write(buffer)
 
 		is_open := buffer[0] == []byte("{")[0]
-		is_close := buffer[0] == []byte("}")[0]
 		if !found {
 			found = is_open
 		}
 
-		counter += b2i[is_open] - b2i[is_close]
+		if is_open {
+			counter++
+		}
+		if buffer[0] == []byte("}")[0] {
+			counter--
+		}
 
 		if found && counter == 0 {
 			break
