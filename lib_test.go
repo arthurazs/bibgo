@@ -151,10 +151,10 @@ func TestNextEntry(t *testing.T) {
 		{*strings.NewReader(ScopusText), *strings.NewReader(ScopusText[:1275])},
 	}
 
-	for _, c := range cases {
+	for i, c := range cases {
 		got, _ := NextEntry(c.bib)
 		if got != c.entry {
-			t.Errorf("NextEntry(%q)\n\nexpected %q\n\n     got %q", c.bib, c.entry, got)
+			t.Errorf("NextEntry(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.bib, c.entry, got, i)
 		}
 	}
 }
