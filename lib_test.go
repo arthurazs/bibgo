@@ -144,9 +144,7 @@ EXPORT DATE: 02 July 2024
 `
 
 func TestNextEntry(t *testing.T) {
-	cases := []struct {
-		bib, entry strings.Reader
-	}{
+	cases := []struct{ bib, entry strings.Reader }{
 		{*strings.NewReader(ACMText), *strings.NewReader(ACMText[:619])},
 		{*strings.NewReader(IEEEText), *strings.NewReader(IEEEText[:357])},
 		{*strings.NewReader(SciDirText), *strings.NewReader(SciDirText[:542])},
