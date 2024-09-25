@@ -237,7 +237,7 @@ func TestGetElementKey(t *testing.T) {
 func TestGetElementValue(t *testing.T) {
 	cases := []struct {
 		entry      strings.Reader
-		elementKey string
+		elementValue string
 	}{
 		{*strings.NewReader(ACMText), "Ahmad, Waqar and Hasan, Osman and Tahar, Sofiene"},
 		{*strings.NewReader(IEEEText), "Wang, Wenlong and Liu, Minghui and Zhao, Xicai and Yang, Gui"},
@@ -251,10 +251,10 @@ func TestGetElementValue(t *testing.T) {
 		getElementKey(&c.entry)
 		got, err := getElementValue(&c.entry)
 		if err != nil {
-			t.Errorf("getElementValue(%q) returned unexpected error: %v", c.elementKey, err)
+			t.Errorf("getElementValue(%q) returned unexpected error: %v", c.elementValue, err)
 		}
-		if got != c.elementKey {
-			t.Errorf("getElementValue(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.elementKey, got, i)
+		if got != c.elementValue {
+			t.Errorf("getElementValue(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.elementValue, got, i)
 		}
 	}
 }

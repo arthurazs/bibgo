@@ -5,12 +5,13 @@ import (
 	"strings"
 )
 
+var err error
+
 func nextEntry(bib *strings.Reader) (strings.Reader, error) {
 	var buffer []byte = make([]byte, 1)
 	var entry strings.Builder = strings.Builder{}
 	var found bool = false
 	var counter int = 0
-	var err error
 
 	for {
 		_, err = bib.Read(buffer)
@@ -46,7 +47,6 @@ func getCategory(entry *strings.Reader) (string, error) {
 	var buffer []byte = make([]byte, 1)
 	var category strings.Builder = strings.Builder{}
 	var foundAt bool = false
-	var err error
 	for {
 		_, err = entry.Read(buffer)
 		if err == io.EOF {
@@ -70,7 +70,6 @@ func getCategory(entry *strings.Reader) (string, error) {
 func getKey(entry *strings.Reader) (string, error) {
 	var buffer []byte = make([]byte, 1)
 	var key strings.Builder = strings.Builder{}
-	var err error
 	for {
 		_, err = entry.Read(buffer)
 		if err == io.EOF {
@@ -90,7 +89,6 @@ func getKey(entry *strings.Reader) (string, error) {
 func getElementKey(entry *strings.Reader) (string, error) {
 	var buffer []byte = make([]byte, 1)
 	var elementKey strings.Builder = strings.Builder{}
-	var err error
 	for {
 		_, err = entry.Read(buffer)
 		if err == io.EOF {
@@ -112,7 +110,6 @@ func getElementValue(entry *strings.Reader) (string, error) {
 	var elementValue strings.Builder = strings.Builder{}
 	var started bool = false
 	var counter int = 0
-	var err error
 	for {
 		_, err = entry.Read(buffer)
 		if err == io.EOF {
