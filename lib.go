@@ -86,3 +86,23 @@ func getKey(entry *strings.Reader) (string, error) {
     }
     return key.String(), nil
 }
+
+func getElementKey(entry *strings.Reader) (string, error) {
+    var buffer []byte = make([]byte, 1)
+    var elementKey strings.Builder = strings.Builder{}
+    var err error
+    for {
+        _, err = entry.Read(buffer)
+        if err == io.EOF {
+            break
+        }
+        if err != nil {
+            return "", err
+        }
+        if buffer[0] == []byte("=")[0] {
+            break
+        }
+        elementKey.Write(buffer)
+    }
+    return strings.TrimSpace(elementKey.String()), nil
+}

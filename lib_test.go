@@ -142,6 +142,7 @@ EXPORT DATE: 02 July 2024
 	note = {Cited by: 0; All Open Access, Gold Open Access}
 }
 `
+
 const ExpectedCategory = "article"
 const ExpectedKey = "1"
 
@@ -205,6 +206,30 @@ func TestGetKey(t *testing.T) {
         }
 		if got != c.key {
 			t.Errorf("getKey(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.key, got, i)
+		}
+	}
+}
+
+func TestGetElementKey(t *testing.T) {
+	cases := []struct {
+		entry    strings.Reader
+		elementKey string
+	}{
+		{*strings.NewReader(ACMText), "author"},
+		{*strings.NewReader(IEEEText), "author"},
+		{*strings.NewReader(SciDirText), "title"},
+		{*strings.NewReader(ScopusText), "author"},
+	}
+
+	for i, c := range cases {
+		getCategory(&c.entry)
+        getKey(&c.entry)
+        got, err := getElementKey(&c.entry)
+        if err != nil {
+            t.Errorf("nextEntry(%q) returned unexpected error: %v", c.elementKey, err)
+        }
+		if got != c.elementKey {
+			t.Errorf("getKey(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.elementKey, got, i)
 		}
 	}
 }
