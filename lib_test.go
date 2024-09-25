@@ -236,7 +236,7 @@ func TestGetElementKey(t *testing.T) {
 
 func TestGetElementValue(t *testing.T) {
 	cases := []struct {
-		entry      strings.Reader
+		entry        strings.Reader
 		elementValue string
 	}{
 		{*strings.NewReader(ACMText), "Ahmad, Waqar and Hasan, Osman and Tahar, Sofiene"},
@@ -261,7 +261,7 @@ func TestGetElementValue(t *testing.T) {
 
 func TestGetNextElement(t *testing.T) {
 	cases := []struct {
-		entry      strings.Reader
+		entry   strings.Reader
 		element Element
 	}{
 		{*strings.NewReader(ACMText), Element{"author", "Ahmad, Waqar and Hasan, Osman and Tahar, Sofiene"}},
