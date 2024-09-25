@@ -45,9 +45,9 @@ func nextEntry(bib *strings.Reader) (strings.Reader, error) {
 func getCategory(entry *strings.Reader) (string, error) {
 	var buffer []byte = make([]byte, 1)
 	var category strings.Builder = strings.Builder{}
-    var found_at bool = false
-    var err error
-    for {
+	var found_at bool = false
+	var err error
+	for {
 		_, err = entry.Read(buffer)
 		if err == io.EOF {
 			break
@@ -55,54 +55,54 @@ func getCategory(entry *strings.Reader) (string, error) {
 		if err != nil {
 			return "", err
 		}
-        if !found_at {
-            found_at = buffer[0] == []byte("@")[0]
-            continue
-        }
-        if buffer[0] == []byte("{")[0] {
-            break
-        }
-        category.Write(buffer)
-    }
-    return strings.ToLower(category.String()), nil
+		if !found_at {
+			found_at = buffer[0] == []byte("@")[0]
+			continue
+		}
+		if buffer[0] == []byte("{")[0] {
+			break
+		}
+		category.Write(buffer)
+	}
+	return strings.ToLower(category.String()), nil
 }
 
 func getKey(entry *strings.Reader) (string, error) {
-    var buffer []byte = make([]byte, 1)
-    var key strings.Builder = strings.Builder{}
-    var err error
-    for {
-        _, err = entry.Read(buffer)
-        if err == io.EOF {
-            break
-        }
-        if err != nil {
-            return "", err
-        }
-        if buffer[0] == []byte(",")[0] {
-            break
-        }
-        key.Write(buffer)
-    }
-    return key.String(), nil
+	var buffer []byte = make([]byte, 1)
+	var key strings.Builder = strings.Builder{}
+	var err error
+	for {
+		_, err = entry.Read(buffer)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return "", err
+		}
+		if buffer[0] == []byte(",")[0] {
+			break
+		}
+		key.Write(buffer)
+	}
+	return key.String(), nil
 }
 
 func getElementKey(entry *strings.Reader) (string, error) {
-    var buffer []byte = make([]byte, 1)
-    var elementKey strings.Builder = strings.Builder{}
-    var err error
-    for {
-        _, err = entry.Read(buffer)
-        if err == io.EOF {
-            break
-        }
-        if err != nil {
-            return "", err
-        }
-        if buffer[0] == []byte("=")[0] {
-            break
-        }
-        elementKey.Write(buffer)
-    }
-    return strings.TrimSpace(elementKey.String()), nil
+	var buffer []byte = make([]byte, 1)
+	var elementKey strings.Builder = strings.Builder{}
+	var err error
+	for {
+		_, err = entry.Read(buffer)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return "", err
+		}
+		if buffer[0] == []byte("=")[0] {
+			break
+		}
+		elementKey.Write(buffer)
+	}
+	return strings.TrimSpace(elementKey.String()), nil
 }
