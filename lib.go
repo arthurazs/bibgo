@@ -22,12 +22,12 @@ func nextEntry(bib *strings.Reader) (strings.Reader, error) {
 		}
 		entry.Write(buffer)
 
-		is_open := buffer[0] == []byte("{")[0]
+		isOpen := buffer[0] == []byte("{")[0]
 		if !found {
-			found = is_open
+			found = isOpen
 		}
 
-		if is_open {
+		if isOpen {
 			counter++
 		}
 		if buffer[0] == []byte("}")[0] {
@@ -45,7 +45,7 @@ func nextEntry(bib *strings.Reader) (strings.Reader, error) {
 func getCategory(entry *strings.Reader) (string, error) {
 	var buffer []byte = make([]byte, 1)
 	var category strings.Builder = strings.Builder{}
-	var found_at bool = false
+	var foundAt bool = false
 	var err error
 	for {
 		_, err = entry.Read(buffer)
@@ -55,8 +55,8 @@ func getCategory(entry *strings.Reader) (string, error) {
 		if err != nil {
 			return "", err
 		}
-		if !found_at {
-			found_at = buffer[0] == []byte("@")[0]
+		if !foundAt {
+			foundAt = buffer[0] == []byte("@")[0]
 			continue
 		}
 		if buffer[0] == []byte("{")[0] {
@@ -110,8 +110,8 @@ func getElementKey(entry *strings.Reader) (string, error) {
 func getElementValue(entry *strings.Reader) (string, error) {
 	var buffer []byte = make([]byte, 1)
 	var elementValue strings.Builder = strings.Builder{}
-    var started bool = false
-    var counter int = 0
+	var started bool = false
+	var counter int = 0
 	var err error
 	for {
 		_, err = entry.Read(buffer)
@@ -123,13 +123,13 @@ func getElementValue(entry *strings.Reader) (string, error) {
 		}
 
 		isOpen := buffer[0] == []byte("{")[0]
-        if !started {
-            if isOpen {
-                started = true
-                counter++
-            }
-            continue
-        }
+		if !started {
+			if isOpen {
+				started = true
+				counter++
+			}
+			continue
+		}
 
 		if isOpen {
 			counter++
@@ -138,9 +138,9 @@ func getElementValue(entry *strings.Reader) (string, error) {
 			counter--
 		}
 
-        if started && counter == 0 {
-            break
-        }
+		if started && counter == 0 {
+			break
+		}
 		elementValue.Write(buffer)
 	}
 	return strings.TrimSpace(elementValue.String()), nil

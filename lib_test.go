@@ -156,9 +156,9 @@ func TestNextEntry(t *testing.T) {
 
 	for i, c := range cases {
 		got, err := nextEntry(&c.bib)
-        if err != nil {
-            t.Errorf("nextEntry(%q) returned unexpected error: %v", c.bib, err)
-        }
+		if err != nil {
+			t.Errorf("nextEntry(%q) returned unexpected error: %v", c.bib, err)
+		}
 		if got != c.entry {
 			t.Errorf("nextEntry(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.bib, c.entry, got, i)
 		}
@@ -178,9 +178,9 @@ func TestGetCategory(t *testing.T) {
 
 	for i, c := range cases {
 		got, err := getCategory(&c.entry)
-        if err != nil {
-            t.Errorf("getCategory(%q) returned unexpected error: %v", c.category, err)
-        }
+		if err != nil {
+			t.Errorf("getCategory(%q) returned unexpected error: %v", c.category, err)
+		}
 		if got != c.category {
 			t.Errorf("getCategory(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.category, got, i)
 		}
@@ -189,8 +189,8 @@ func TestGetCategory(t *testing.T) {
 
 func TestGetKey(t *testing.T) {
 	cases := []struct {
-		entry    strings.Reader
-		key string
+		entry strings.Reader
+		key   string
 	}{
 		{*strings.NewReader(ACMText), ExpectedKey},
 		{*strings.NewReader(IEEEText), ExpectedKey},
@@ -200,10 +200,10 @@ func TestGetKey(t *testing.T) {
 
 	for i, c := range cases {
 		getCategory(&c.entry)
-        got, err := getKey(&c.entry)
-        if err != nil {
-            t.Errorf("getKey(%q) returned unexpected error: %v", c.key, err)
-        }
+		got, err := getKey(&c.entry)
+		if err != nil {
+			t.Errorf("getKey(%q) returned unexpected error: %v", c.key, err)
+		}
 		if got != c.key {
 			t.Errorf("getKey(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.key, got, i)
 		}
@@ -212,7 +212,7 @@ func TestGetKey(t *testing.T) {
 
 func TestGetElementKey(t *testing.T) {
 	cases := []struct {
-		entry    strings.Reader
+		entry      strings.Reader
 		elementKey string
 	}{
 		{*strings.NewReader(ACMText), "author"},
@@ -223,11 +223,11 @@ func TestGetElementKey(t *testing.T) {
 
 	for i, c := range cases {
 		getCategory(&c.entry)
-        getKey(&c.entry)
-        got, err := getElementKey(&c.entry)
-        if err != nil {
-            t.Errorf("getElementKey(%q) returned unexpected error: %v", c.elementKey, err)
-        }
+		getKey(&c.entry)
+		got, err := getElementKey(&c.entry)
+		if err != nil {
+			t.Errorf("getElementKey(%q) returned unexpected error: %v", c.elementKey, err)
+		}
 		if got != c.elementKey {
 			t.Errorf("getElementKey(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.elementKey, got, i)
 		}
@@ -236,7 +236,7 @@ func TestGetElementKey(t *testing.T) {
 
 func TestGetElementValue(t *testing.T) {
 	cases := []struct {
-		entry    strings.Reader
+		entry      strings.Reader
 		elementKey string
 	}{
 		{*strings.NewReader(ACMText), "Ahmad, Waqar and Hasan, Osman and Tahar, Sofiene"},
@@ -247,12 +247,12 @@ func TestGetElementValue(t *testing.T) {
 
 	for i, c := range cases {
 		getCategory(&c.entry)
-        getKey(&c.entry)
-        getElementKey(&c.entry)
-        got, err := getElementValue(&c.entry)
-        if err != nil {
-            t.Errorf("getElementValue(%q) returned unexpected error: %v", c.elementKey, err)
-        }
+		getKey(&c.entry)
+		getElementKey(&c.entry)
+		got, err := getElementValue(&c.entry)
+		if err != nil {
+			t.Errorf("getElementValue(%q) returned unexpected error: %v", c.elementKey, err)
+		}
 		if got != c.elementKey {
 			t.Errorf("getElementValue(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.elementKey, got, i)
 		}
