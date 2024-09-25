@@ -179,7 +179,7 @@ func TestGetCategory(t *testing.T) {
 	for i, c := range cases {
 		got, err := getCategory(&c.entry)
         if err != nil {
-            t.Errorf("nextEntry(%q) returned unexpected error: %v", c.category, err)
+            t.Errorf("getCategory(%q) returned unexpected error: %v", c.category, err)
         }
 		if got != c.category {
 			t.Errorf("getCategory(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.category, got, i)
@@ -202,7 +202,7 @@ func TestGetKey(t *testing.T) {
 		getCategory(&c.entry)
         got, err := getKey(&c.entry)
         if err != nil {
-            t.Errorf("nextEntry(%q) returned unexpected error: %v", c.key, err)
+            t.Errorf("getKey(%q) returned unexpected error: %v", c.key, err)
         }
 		if got != c.key {
 			t.Errorf("getKey(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.key, got, i)
@@ -226,10 +226,10 @@ func TestGetElementKey(t *testing.T) {
         getKey(&c.entry)
         got, err := getElementKey(&c.entry)
         if err != nil {
-            t.Errorf("nextEntry(%q) returned unexpected error: %v", c.elementKey, err)
+            t.Errorf("getElementKey(%q) returned unexpected error: %v", c.elementKey, err)
         }
 		if got != c.elementKey {
-			t.Errorf("getKey(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.elementKey, got, i)
+			t.Errorf("getElementKey(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.elementKey, got, i)
 		}
 	}
 }
