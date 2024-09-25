@@ -106,3 +106,42 @@ func getElementKey(entry *strings.Reader) (string, error) {
 	}
 	return strings.TrimSpace(elementKey.String()), nil
 }
+
+func getElementValue(entry *strings.Reader) (string, error) {
+	var buffer []byte = make([]byte, 1)
+	var elementValue strings.Builder = strings.Builder{}
+    var started bool = false
+    var counter int = 0
+	var err error
+	for {
+		_, err = entry.Read(buffer)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return "", err
+		}
+
+		isOpen := buffer[0] == []byte("{")[0]
+        if !started {
+            if isOpen {
+                started = true
+                counter++
+            }
+            continue
+        }
+
+		if isOpen {
+			counter++
+		}
+		if buffer[0] == []byte("}")[0] {
+			counter--
+		}
+
+        if started && counter == 0 {
+            break
+        }
+		elementValue.Write(buffer)
+	}
+	return strings.TrimSpace(elementValue.String()), nil
+}
