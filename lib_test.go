@@ -258,3 +258,27 @@ func TestGetElementValue(t *testing.T) {
 		}
 	}
 }
+
+func TestGetNextElement(t *testing.T) {
+	cases := []struct {
+		entry      strings.Reader
+		element Element
+	}{
+		{*strings.NewReader(ACMText), Element{"author", "Ahmad, Waqar and Hasan, Osman and Tahar, Sofiene"}},
+		{*strings.NewReader(IEEEText), Element{"author", "Wang, Wenlong and Liu, Minghui and Zhao, Xicai and Yang, Gui"}},
+		{*strings.NewReader(SciDirText), Element{"title", "Research and implementation of virtual circuit test tool for smart substations"}},
+		{*strings.NewReader(ScopusText), Element{"author", "Chamana, Manohar and Bhatta, Rabindra and Schmitt, Konrad and Shrestha, Rajendra and Bayne, Stephen"}},
+	}
+
+	for i, c := range cases {
+		getCategory(&c.entry)
+		getKey(&c.entry)
+		got, err := getNextElement(&c.entry)
+		if err != nil {
+			t.Errorf("getNextElement(%q) returned unexpected error: %v", c.element, err)
+		}
+		if got != c.element {
+			t.Errorf("getNextElement(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.element, got, i)
+		}
+	}
+}

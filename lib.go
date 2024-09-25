@@ -142,3 +142,25 @@ func getElementValue(entry *strings.Reader) (string, error) {
 	}
 	return strings.TrimSpace(elementValue.String()), nil
 }
+
+type Element struct {
+    key string
+    value string
+}
+
+func getNextElement(entry *strings.Reader) (Element, error) {
+    var key string
+    var value string
+
+    key, err = getElementKey(entry)
+    if err != nil {
+        return Element{}, err
+    }
+
+    value, err = getElementValue(entry)
+    if err != nil {
+        return Element{}, err
+    }
+
+    return Element{key, value}, err
+}
