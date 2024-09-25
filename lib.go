@@ -42,5 +42,29 @@ func nextEntry(bib *strings.Reader) (strings.Reader, error) {
 	return *strings.NewReader(entry.String()), err
 }
 
+func getCategory(entry *strings.Reader) (string, error) {
+	var buffer []byte = make([]byte, 1)
+	var category strings.Builder = strings.Builder{}
+    var found_at bool = false
+    var err error
+    for {
+		_, err = entry.Read(buffer)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return "", err
+		}
+        if !found_at {
+            found_at = buffer[0] == []byte("@")[0]
+            continue
+        }
+        if buffer[0] == []byte("{")[0] {
+            break
+        }
+        category.Write(buffer)
+    }
+    return strings.ToLower(category.String()), nil
+}
 
 }
