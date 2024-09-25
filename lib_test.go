@@ -1,4 +1,4 @@
-package main
+package bibgo
 
 import (
 	"strings"
@@ -152,9 +152,12 @@ func TestNextEntry(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		got, _ := NextEntry(c.bib)
+		got, err := nextEntry(&c.bib)
+        if err != nil {
+            t.Errorf("nextEntry(%q) returned unexpected error: %v", c.bib, err)
+        }
 		if got != c.entry {
-			t.Errorf("NextEntry(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.bib, c.entry, got, i)
+			t.Errorf("nextEntry(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.bib, c.entry, got, i)
 		}
 	}
 }
