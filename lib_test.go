@@ -143,6 +143,7 @@ EXPORT DATE: 02 July 2024
 }
 `
 const ExpectedCategory = "article"
+const ExpectedKey = "1"
 
 func TestNextEntry(t *testing.T) {
 	cases := []struct{ bib, entry strings.Reader }{
@@ -181,6 +182,29 @@ func TestGetCategory(t *testing.T) {
         }
 		if got != c.category {
 			t.Errorf("getCategory(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.category, got, i)
+		}
+	}
+}
+
+func TestGetKey(t *testing.T) {
+	cases := []struct {
+		entry    strings.Reader
+		key string
+	}{
+		{*strings.NewReader(ACMText), ExpectedKey},
+		{*strings.NewReader(IEEEText), ExpectedKey},
+		{*strings.NewReader(SciDirText), ExpectedKey},
+		{*strings.NewReader(ScopusText), ExpectedKey},
+	}
+
+	for i, c := range cases {
+		getCategory(&c.entry)
+        got, err := getKey(&c.entry)
+        if err != nil {
+            t.Errorf("nextEntry(%q) returned unexpected error: %v", c.key, err)
+        }
+		if got != c.key {
+			t.Errorf("getKey(%q)\n\nexpected %q\n\n     got %q\n\nCase #%d", c.entry, c.key, got, i)
 		}
 	}
 }

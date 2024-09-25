@@ -67,4 +67,22 @@ func getCategory(entry *strings.Reader) (string, error) {
     return strings.ToLower(category.String()), nil
 }
 
+func getKey(entry *strings.Reader) (string, error) {
+    var buffer []byte = make([]byte, 1)
+    var key strings.Builder = strings.Builder{}
+    var err error
+    for {
+        _, err = entry.Read(buffer)
+        if err == io.EOF {
+            break
+        }
+        if err != nil {
+            return "", err
+        }
+        if buffer[0] == []byte(",")[0] {
+            break
+        }
+        key.Write(buffer)
+    }
+    return key.String(), nil
 }
