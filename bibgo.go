@@ -229,6 +229,16 @@ func string2uint16(text string, name string) uint16 {
 	return uint16(value)
 }
 
+func string2uint32(text string, name string) uint32 {
+	var value uint64
+	value, err = strconv.ParseUint(text, 10, 32)
+	if err != nil {
+		fmt.Printf("Could not parse %s: %v", name, err)
+		return 0
+	}
+	return uint32(value)
+}
+
 func ParseEntry(entry *strings.Reader) (Entry, error) { // TODO should return a pointer?
 	var category, key string
 
@@ -304,6 +314,10 @@ Loop:
 			parsed_entry.publication_stage = element.value
 		case "source":
 			parsed_entry.source = element.value
+		case "coden":
+			parsed_entry.coden = element.value
+		case "pmid":
+			parsed_entry.pmid = string2uint32(element.value, "pmid")
 		case "}", "":
 			break Loop
 		case "type":
