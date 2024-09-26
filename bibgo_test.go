@@ -331,6 +331,7 @@ func TestParseEntry(t *testing.T) {
 			title:      "Formal reliability and failure analysis of ethernet based communication networks in a smart grid substation",
 			year:       2020,
 			journal:    "Form. Asp. Comput.",
+			keywords:   []string{"Theorem proving", "Higher-order logic", "Fault tree", "Reliability block diagrams", "Smart grid"},
 		}},
 		{*strings.NewReader(IEEEText), Entry{
 			category: "article",
@@ -347,6 +348,7 @@ func TestParseEntry(t *testing.T) {
 			journal:  "Procedia Computer Science",
 			year:     2021,
 			author:   []string{"Jin Wang", "Zengkai Wang"},
+			keywords: []string{"Smart substation", "IEC61850", "virtual circuit"},
 		}},
 		{*strings.NewReader(ScopusText), Entry{
 			category:               "article",

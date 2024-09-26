@@ -262,6 +262,8 @@ Loop:
 			parsed_entry.journal = element.value
 		case "year":
 			parsed_entry.year = string2uint16(element.value, "year")
+		case "keywords":
+			parsed_entry.keywords = splitAndTrim(element.value, ",")
 		case "}", "":
 			break Loop
 		case "type":
