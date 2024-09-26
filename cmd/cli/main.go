@@ -32,4 +32,5 @@ func main() {
 	entry, _ := bibgo.NextEntry(fileContents)
 	parsed_entry, _ := bibgo.ParseEntry(entry)
 	fmt.Println(parsed_entry)
+	fmt.Printf("\n%+v\n", parsed_entry)
 }
