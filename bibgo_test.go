@@ -292,3 +292,26 @@ func TestGetNextElement(t *testing.T) {
 		}
 	}
 }
+
+func TestParseEntry(t *testing.T) {
+	cases := []struct {
+		entry       strings.Reader
+		parsedEntry Entry
+	}{
+		{*strings.NewReader(ACMText), newEntry("article", "1")},
+		{*strings.NewReader(IEEEText), newEntry("article", "1")},
+		{*strings.NewReader(SciDirText), newEntry("article", "1")},
+		{*strings.NewReader(ScopusText), newEntry("article", "1")},
+	}
+
+	for i, c := range cases {
+		entry, _ := nextEntry(&c.entry)
+		got, err := parseEntry(entry)
+		if err != nil {
+			t.Errorf("Case #%d\nparseEntry(%q) returned unexpected error: %v", i, c.parsedEntry, err)
+		}
+		if !reflect.DeepEqual(got, c.parsedEntry) {
+			t.Errorf("Case #%d\nparseEntry(%q)\n\nexpected %q\n\n     got %q\n\n", i, c.entry, c.parsedEntry, got)
+		}
+	}
+}
