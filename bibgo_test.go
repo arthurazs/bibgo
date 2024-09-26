@@ -415,12 +415,12 @@ func TestParseEntry(t *testing.T) {
 
 	for i, c := range cases {
 		entry, _ := nextEntry(&c.entry)
-		got, err := ParseEntry(entry)
+		got, err := parseEntry(entry)
 		if err != nil {
-			t.Errorf("Case #%d\nParseEntry(%q) returned unexpected error: %v", i, c.parsedEntry, err)
+			t.Errorf("Case #%d\nparseEntry(%q) returned unexpected error: %v", i, c.parsedEntry, err)
 		}
 		if !reflect.DeepEqual(got, c.parsedEntry) {
-			t.Errorf("Case #%d\nParseEntry(%q)\n\nexpected %q\n\n     got %q\n\n", i, c.entry, c.parsedEntry, got)
+			t.Errorf("Case #%d\nparseEntry(%q)\n\nexpected %q\n\n     got %q\n\n", i, c.entry, c.parsedEntry, got)
 		}
 	}
 }

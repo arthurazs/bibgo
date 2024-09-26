@@ -239,7 +239,7 @@ func string2uint32(text string, name string) uint32 {
 	return uint32(value)
 }
 
-func ParseEntry(entry *strings.Reader) (Entry, error) { // TODO should return a pointer?
+func parseEntry(entry *strings.Reader) (Entry, error) { // TODO should return a pointer?
 	var category, key string
 
 	category, err = getCategory(entry)
