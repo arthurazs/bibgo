@@ -208,6 +208,17 @@ func newEntry(category string, key string) Entry { // TODO should return a point
 	}
 }
 
+func splitAndTrim(text string, separator string) []string {
+	var values []string = strings.Split(text, separator)
+	var index int
+	var value string
+
+	for index, value = range values {
+		values[index] = strings.TrimSpace(value)
+	}
+	return values
+}
+
 func string2uint16(text string, name string) uint16 {
 	var value uint64
 	value, err = strconv.ParseUint(text, 10, 16)
