@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"strconv"
 	"strings"
 )
 
@@ -207,6 +208,16 @@ func newEntry(category string, key string) Entry { // TODO should return a point
 	}
 }
 
+func string2uint16(text string, name string) uint16 {
+	var value uint64
+	value, err = strconv.ParseUint(text, 10, 16)
+	if err != nil {
+		fmt.Printf("Could not parse %s: %v", name, err)
+		return 0
+	}
+	return uint16(value)
+}
+
 func ParseEntry(entry *strings.Reader) (Entry, error) { // TODO should return a pointer?
 	var category, key string
 
@@ -238,6 +249,8 @@ Loop:
 			parsed_entry.title = element.value
 		case "journal":
 			parsed_entry.journal = element.value
+		case "year":
+			parsed_entry.year = string2uint16(element.value, "year")
 		case "}", "":
 			break Loop
 		case "type":

@@ -329,6 +329,7 @@ func TestParseEntry(t *testing.T) {
 			key:        "1",
 			author:     []string{"Ahmad, Waqar", "Hasan, Osman", "Tahar, Sofiene"},
 			title:      "Formal reliability and failure analysis of ethernet based communication networks in a smart grid substation",
+			year:       2020,
 			journal:    "Form. Asp. Comput.",
 		}},
 		{*strings.NewReader(IEEEText), Entry{
@@ -337,12 +338,14 @@ func TestParseEntry(t *testing.T) {
 			author:   []string{"Wang, Wenlong", "Liu, Minghui", "Zhao, Xicai", "Yang, Gui"},
 			journal:  "Journal of Modern Power Systems and Clean Energy",
 			title:    "Shared-network scheme of SMV and GOOSE in smart substation",
+			year:     2014,
 		}},
 		{*strings.NewReader(SciDirText), Entry{
 			category: "article",
 			key:      "1",
 			title:    "Research and implementation of virtual circuit test tool for smart substations",
 			journal:  "Procedia Computer Science",
+			year:     2021,
 			author:   []string{"Jin Wang", "Zengkai Wang"},
 		}},
 		{*strings.NewReader(ScopusText), Entry{
@@ -350,6 +353,7 @@ func TestParseEntry(t *testing.T) {
 			key:                    "1",
 			author:                 []string{"Chamana, Manohar", "Bhatta, Rabindra", "Schmitt, Konrad", "Shrestha, Rajendra", "Bayne, Stephen"},
 			title:                  "An Integrated Testbed for Power System Cyber-Physical Operations Training",
+			year:                   2023,
 			journal:                "Applied Sciences (Switzerland)",
 		}},
 	}
