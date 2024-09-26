@@ -1,10 +1,10 @@
 package main
 
 import (
-    "strings"
-    "bibgo"
+	"bibgo"
+	"fmt"
+	"strings"
 )
-
 
 const debugText string = `
 @article{1,
@@ -28,7 +28,8 @@ keywords = {Theorem proving, Higher-order logic, Fault tree, Reliability block d
 `
 
 func main() {
-    fileContents := strings.NewReader(debugText)
-    entry, _ := bibgo.NextEntry(fileContents)
-    bibgo.ParseEntry(entry)
+	fileContents := strings.NewReader(debugText)
+	entry, _ := bibgo.NextEntry(fileContents)
+	parsed_entry, _ := bibgo.ParseEntry(entry)
+	fmt.Println(parsed_entry)
 }
