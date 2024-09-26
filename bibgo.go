@@ -10,7 +10,7 @@ import (
 
 var err error
 
-func NextEntry(bib *strings.Reader) (*strings.Reader, error) {
+func nextEntry(bib *strings.Reader) (*strings.Reader, error) {
 	var buffer []byte = make([]byte, 1)
 	var entry strings.Builder = strings.Builder{}
 	var found bool = false

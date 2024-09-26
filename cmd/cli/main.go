@@ -28,9 +28,7 @@ keywords = {Theorem proving, Higher-order logic, Fault tree, Reliability block d
 `
 
 func main() {
-	fileContents := strings.NewReader(debugText)
-	entry, _ := bibgo.NextEntry(fileContents)
-	parsed_entry, _ := bibgo.ParseEntry(entry)
+	parsed_entry, _ := bibgo.ParseEntry(strings.NewReader(debugText))
 	fmt.Println(parsed_entry)
 	fmt.Printf("\n%+v\n", parsed_entry)
 }
