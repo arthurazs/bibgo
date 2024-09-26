@@ -341,6 +341,7 @@ func TestParseEntry(t *testing.T) {
 			journal:    "Form. Asp. Comput.",
 			month:      "feb",
 			pages:      "71–111",
+			numpages:   41,
 			keywords:   []string{"Theorem proving", "Higher-order logic", "Fault tree", "Reliability block diagrams", "Smart grid"},
 		}},
 		{*strings.NewReader(IEEEText), Entry{
