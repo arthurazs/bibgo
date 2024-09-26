@@ -392,6 +392,7 @@ func TestParseEntry(t *testing.T) {
 			language:               "English",
 			abbrev_source_title:    "Appl. Sci.",
 			publication_stage:      "Final",
+			source:                 "Scopus",
 			note:                   "Cited by: 3; All Open Access, Gold Open Access",
 		}},
 	}
