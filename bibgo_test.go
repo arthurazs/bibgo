@@ -330,6 +330,7 @@ func TestParseEntry(t *testing.T) {
 			author:     []string{"Ahmad, Waqar", "Hasan, Osman", "Tahar, Sofiene"},
 			title:      "Formal reliability and failure analysis of ethernet based communication networks in a smart grid substation",
 			year:       2020,
+			issue_date: "Feb 2020",
 			volume:     "32",
 			number:     "1",
 			issn:       "0934-5043",

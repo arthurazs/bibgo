@@ -276,6 +276,8 @@ Loop:
 			parsed_entry.issn = element.value
 		case "month":
 			parsed_entry.month = element.value
+		case "issue_date":
+			parsed_entry.issue_date = element.value
 		case "}", "":
 			break Loop
 		case "type":
