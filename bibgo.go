@@ -268,6 +268,8 @@ Loop:
 			parsed_entry.volume = element.value
 		case "number":
 			parsed_entry.number = element.value
+		case "pages":
+			parsed_entry.pages = element.value
 		case "}", "":
 			break Loop
 		case "type":

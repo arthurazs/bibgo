@@ -333,6 +333,7 @@ func TestParseEntry(t *testing.T) {
 			volume:     "32",
 			number:     "1",
 			journal:    "Form. Asp. Comput.",
+			pages:      "71–111",
 			keywords:   []string{"Theorem proving", "Higher-order logic", "Fault tree", "Reliability block diagrams", "Smart grid"},
 		}},
 		{*strings.NewReader(IEEEText), Entry{
@@ -344,6 +345,7 @@ func TestParseEntry(t *testing.T) {
 			year:     2014,
 			volume:   "2",
 			number:   "4",
+			pages:    "438-443",
 		}},
 		{*strings.NewReader(SciDirText), Entry{
 			category: "article",
@@ -351,6 +353,7 @@ func TestParseEntry(t *testing.T) {
 			title:    "Research and implementation of virtual circuit test tool for smart substations",
 			journal:  "Procedia Computer Science",
 			volume:   "183",
+			pages:    "197-204",
 			year:     2021,
 			author:   []string{"Jin Wang", "Zengkai Wang"},
 			keywords: []string{"Smart substation", "IEC61850", "virtual circuit"},
