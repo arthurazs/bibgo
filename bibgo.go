@@ -296,6 +296,8 @@ Loop:
 			parsed_entry.author_keywords = splitAndTrim(element.value, ";")
 		case "correspondence_address":
 			parsed_entry.correspondence_address = splitAndTrim(element.value, ";")
+		case "language":
+			parsed_entry.language = element.value
 		case "}", "":
 			break Loop
 		case "type":

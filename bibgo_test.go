@@ -389,6 +389,7 @@ func TestParseEntry(t *testing.T) {
 			correspondence_address: []string{"R. Bhatta", "National Wind Institute, Texas Tech University, Lubbock, 79401, United States", "email: rabindra.bhatta(at)ttu.edu"},
 			publisher:              "Multidisciplinary Digital Publishing Institute (MDPI)",
 			issn:                   "20763417",
+			language:               "English",
 			note:                   "Cited by: 3; All Open Access, Gold Open Access",
 		}},
 	}
