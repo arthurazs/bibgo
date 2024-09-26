@@ -274,6 +274,8 @@ Loop:
 			parsed_entry.doi = element.value
 		case "issn":
 			parsed_entry.issn = element.value
+		case "month":
+			parsed_entry.month = element.value
 		case "}", "":
 			break Loop
 		case "type":

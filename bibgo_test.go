@@ -335,6 +335,7 @@ func TestParseEntry(t *testing.T) {
 			issn:       "0934-5043",
 			doi:        "10.1007/s00165-019-00503-1",
 			journal:    "Form. Asp. Comput.",
+			month:      "feb",
 			pages:      "71–111",
 			keywords:   []string{"Theorem proving", "Higher-order logic", "Fault tree", "Reliability block diagrams", "Smart grid"},
 		}},
@@ -350,6 +351,7 @@ func TestParseEntry(t *testing.T) {
 			pages:    "438-443",
 			doi:      "10.1007/s40565-014-0073-z",
 			issn:     "2196-5420",
+			month:    "December",
 		}},
 		{*strings.NewReader(SciDirText), Entry{
 			category: "article",
