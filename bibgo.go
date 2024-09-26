@@ -298,6 +298,8 @@ Loop:
 			parsed_entry.correspondence_address = splitAndTrim(element.value, ";")
 		case "language":
 			parsed_entry.language = element.value
+		case "abbrev_source_title":
+			parsed_entry.abbrev_source_title = element.value
 		case "}", "":
 			break Loop
 		case "type":
