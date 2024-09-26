@@ -1,17 +1,18 @@
 package bibgo
 
 import (
+	"errors"
 	"io"
 	"strings"
 )
 
 var err error
 
-func nextEntry(bib *strings.Reader) (strings.Reader, error) {
+func NextEntry(bib *strings.Reader) (*strings.Reader, error) {
 	var buffer []byte = make([]byte, 1)
 	var entry strings.Builder = strings.Builder{}
 	var found bool = false
-	var counter int = 0
+	var counter int16 = 0
 
 	for {
 		_, err = bib.Read(buffer)
@@ -19,7 +20,7 @@ func nextEntry(bib *strings.Reader) (strings.Reader, error) {
 			break
 		}
 		if err != nil {
-			return strings.Reader{}, err
+			return nil, err
 		}
 		entry.Write(buffer)
 
@@ -40,7 +41,7 @@ func nextEntry(bib *strings.Reader) (strings.Reader, error) {
 		}
 	}
 
-	return *strings.NewReader(entry.String()), err
+	return strings.NewReader(entry.String()), err
 }
 
 func getCategory(entry *strings.Reader) (string, error) {
@@ -109,7 +110,7 @@ func getElementValue(entry *strings.Reader) (string, error) {
 	var buffer []byte = make([]byte, 1)
 	var elementValue strings.Builder = strings.Builder{}
 	var started bool = false
-	var counter int = 0
+	var counter int16 = 0
 	for {
 		_, err = entry.Read(buffer)
 		if err == io.EOF {
@@ -148,7 +149,7 @@ type Element struct {
 	value string
 }
 
-func getNextElement(entry *strings.Reader) (Element, error) {
+func getNextElement(entry *strings.Reader) (Element, error) { // TODO should return a pointer?
 	var key string
 	var value string
 
