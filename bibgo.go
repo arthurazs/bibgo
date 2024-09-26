@@ -282,6 +282,8 @@ Loop:
 			parsed_entry.publisher = element.value
 		case "address":
 			parsed_entry.address = element.value
+		case "url":
+			parsed_entry.url = element.value
 		case "}", "":
 			break Loop
 		case "type":
