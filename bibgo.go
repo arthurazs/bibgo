@@ -286,6 +286,8 @@ Loop:
 			parsed_entry.url = element.value
 		case "numpages":
 			parsed_entry.numpages = string2uint16(element.value, "numpages")
+		case "articleno":
+			parsed_entry.articleno = string2uint16(element.value, "articleno")
 		case "}", "":
 			break Loop
 		case "type":
