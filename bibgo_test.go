@@ -366,6 +366,7 @@ func TestParseEntry(t *testing.T) {
 			volume:   "183",
 			pages:    "197-204",
 			year:     2021,
+			note:     "Proceedings of the 10th International Conference of Information and Communication Technology",
 			issn:     "1877-0509",
 			doi:      "https://doi.org/10.1016/j.procs.2021.02.050",
 			url:      "https://www.sciencedirect.com/science/article/pii/S1877050921005159",
@@ -385,6 +386,7 @@ func TestParseEntry(t *testing.T) {
 			url:                    "https://www.scopus.com/inward/record.uri?eid=2-s2.0-85169099191&doi=10.3390%2fapp13169451&partnerID=40&md5=17b896c1c440787efcbc5d384003d31c",
 			publisher:              "Multidisciplinary Digital Publishing Institute (MDPI)",
 			issn:                   "20763417",
+			note:                   "Cited by: 3; All Open Access, Gold Open Access",
 		}},
 	}
 
