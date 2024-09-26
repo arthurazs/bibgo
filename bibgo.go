@@ -232,6 +232,8 @@ Loop:
 		switch strings.ToLower(element.key) {
 		case "author":
 			parsed_entry.author = splitAndTrim(element.value, " and ")
+		case "abstract":
+			parsed_entry.abstract = element.value
 		case "}", "":
 			break Loop
 		case "type":
