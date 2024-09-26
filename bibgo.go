@@ -234,6 +234,8 @@ Loop:
 			parsed_entry.author = splitAndTrim(element.value, " and ")
 		case "abstract":
 			parsed_entry.abstract = element.value
+		case "title":
+			parsed_entry.title = element.value
 		case "}", "":
 			break Loop
 		case "type":

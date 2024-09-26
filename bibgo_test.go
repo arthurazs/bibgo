@@ -325,17 +325,28 @@ func TestParseEntry(t *testing.T) {
 		parsedEntry Entry
 	}{
 		{*strings.NewReader(ACMText), Entry{
-			category: "article", key: "1", author: []string{"Ahmad, Waqar", "Hasan, Osman", "Tahar, Sofiene"},
+			category:   "article",
+			key:        "1",
+			author:     []string{"Ahmad, Waqar", "Hasan, Osman", "Tahar, Sofiene"},
+			title:      "Formal reliability and failure analysis of ethernet based communication networks in a smart grid substation",
 		}},
 		{*strings.NewReader(IEEEText), Entry{
-			category: "article", key: "1", author: []string{"Wang, Wenlong", "Liu, Minghui", "Zhao, Xicai", "Yang, Gui"},
+			category: "article",
+			key:      "1",
+			author:   []string{"Wang, Wenlong", "Liu, Minghui", "Zhao, Xicai", "Yang, Gui"},
+			title:    "Shared-network scheme of SMV and GOOSE in smart substation",
 		}},
 		{*strings.NewReader(SciDirText), Entry{
-			category: "article", key: "1",
+			category: "article",
+			key:      "1",
+			title:    "Research and implementation of virtual circuit test tool for smart substations",
 			author:   []string{"Jin Wang", "Zengkai Wang"},
 		}},
 		{*strings.NewReader(ScopusText), Entry{
-			category: "article", key: "1", author: []string{"Chamana, Manohar", "Bhatta, Rabindra", "Schmitt, Konrad", "Shrestha, Rajendra", "Bayne, Stephen"},
+			category:               "article",
+			key:                    "1",
+			author:                 []string{"Chamana, Manohar", "Bhatta, Rabindra", "Schmitt, Konrad", "Shrestha, Rajendra", "Bayne, Stephen"},
+			title:                  "An Integrated Testbed for Power System Cyber-Physical Operations Training",
 		}},
 	}
 
