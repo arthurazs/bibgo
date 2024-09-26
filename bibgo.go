@@ -230,7 +230,7 @@ Loop:
 		}
 		switch element.key {
 		case "author":
-			println(">>", element.value)
+			parsed_entry.author = strings.Split(element.value, " and ")
 		case "}", "":
 			break Loop
 		default:
