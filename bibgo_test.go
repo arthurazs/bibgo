@@ -386,6 +386,7 @@ func TestParseEntry(t *testing.T) {
 			url:                    "https://www.scopus.com/inward/record.uri?eid=2-s2.0-85169099191&doi=10.3390%2fapp13169451&partnerID=40&md5=17b896c1c440787efcbc5d384003d31c",
 			affiliations:           []string{"National Wind Institute, Texas Tech University, Lubbock, 79401, TX, United States", "Electrical and Computer Engineering Department, Texas Tech University, Lubbock, 79401, TX, United States"},
 			author_keywords:        []string{"cyberattacks", "cyber–physical systems", "education", "power systems", "real-time testbed", "smart grids"},
+			correspondence_address: []string{"R. Bhatta", "National Wind Institute, Texas Tech University, Lubbock, 79401, United States", "email: rabindra.bhatta(at)ttu.edu"},
 			publisher:              "Multidisciplinary Digital Publishing Institute (MDPI)",
 			issn:                   "20763417",
 			note:                   "Cited by: 3; All Open Access, Gold Open Access",
