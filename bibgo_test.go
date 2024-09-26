@@ -329,17 +329,20 @@ func TestParseEntry(t *testing.T) {
 			key:        "1",
 			author:     []string{"Ahmad, Waqar", "Hasan, Osman", "Tahar, Sofiene"},
 			title:      "Formal reliability and failure analysis of ethernet based communication networks in a smart grid substation",
+			journal:    "Form. Asp. Comput.",
 		}},
 		{*strings.NewReader(IEEEText), Entry{
 			category: "article",
 			key:      "1",
 			author:   []string{"Wang, Wenlong", "Liu, Minghui", "Zhao, Xicai", "Yang, Gui"},
+			journal:  "Journal of Modern Power Systems and Clean Energy",
 			title:    "Shared-network scheme of SMV and GOOSE in smart substation",
 		}},
 		{*strings.NewReader(SciDirText), Entry{
 			category: "article",
 			key:      "1",
 			title:    "Research and implementation of virtual circuit test tool for smart substations",
+			journal:  "Procedia Computer Science",
 			author:   []string{"Jin Wang", "Zengkai Wang"},
 		}},
 		{*strings.NewReader(ScopusText), Entry{
@@ -347,6 +350,7 @@ func TestParseEntry(t *testing.T) {
 			key:                    "1",
 			author:                 []string{"Chamana, Manohar", "Bhatta, Rabindra", "Schmitt, Konrad", "Shrestha, Rajendra", "Bayne, Stephen"},
 			title:                  "An Integrated Testbed for Power System Cyber-Physical Operations Training",
+			journal:                "Applied Sciences (Switzerland)",
 		}},
 	}
 
