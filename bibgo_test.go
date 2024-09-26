@@ -384,6 +384,7 @@ func TestParseEntry(t *testing.T) {
 			number:                 "16",
 			doi:                    "10.3390/app13169451",
 			url:                    "https://www.scopus.com/inward/record.uri?eid=2-s2.0-85169099191&doi=10.3390%2fapp13169451&partnerID=40&md5=17b896c1c440787efcbc5d384003d31c",
+			affiliations:           []string{"National Wind Institute, Texas Tech University, Lubbock, 79401, TX, United States", "Electrical and Computer Engineering Department, Texas Tech University, Lubbock, 79401, TX, United States"},
 			publisher:              "Multidisciplinary Digital Publishing Institute (MDPI)",
 			issn:                   "20763417",
 			note:                   "Cited by: 3; All Open Access, Gold Open Access",

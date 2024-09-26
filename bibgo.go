@@ -290,6 +290,8 @@ Loop:
 			parsed_entry.articleno = string2uint16(element.value, "articleno")
 		case "note":
 			parsed_entry.note = element.value
+		case "affiliations":
+			parsed_entry.affiliations = splitAndTrim(element.value, ";")
 		case "}", "":
 			break Loop
 		case "type":
