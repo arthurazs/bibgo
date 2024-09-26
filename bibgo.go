@@ -270,6 +270,8 @@ Loop:
 			parsed_entry.number = element.value
 		case "pages":
 			parsed_entry.pages = element.value
+		case "doi":
+			parsed_entry.doi = element.value
 		case "}", "":
 			break Loop
 		case "type":

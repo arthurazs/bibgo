@@ -332,6 +332,7 @@ func TestParseEntry(t *testing.T) {
 			year:       2020,
 			volume:     "32",
 			number:     "1",
+			doi:        "10.1007/s00165-019-00503-1",
 			journal:    "Form. Asp. Comput.",
 			pages:      "71–111",
 			keywords:   []string{"Theorem proving", "Higher-order logic", "Fault tree", "Reliability block diagrams", "Smart grid"},
@@ -346,6 +347,7 @@ func TestParseEntry(t *testing.T) {
 			volume:   "2",
 			number:   "4",
 			pages:    "438-443",
+			doi:      "10.1007/s40565-014-0073-z",
 		}},
 		{*strings.NewReader(SciDirText), Entry{
 			category: "article",
@@ -355,6 +357,7 @@ func TestParseEntry(t *testing.T) {
 			volume:   "183",
 			pages:    "197-204",
 			year:     2021,
+			doi:      "https://doi.org/10.1016/j.procs.2021.02.050",
 			author:   []string{"Jin Wang", "Zengkai Wang"},
 			keywords: []string{"Smart substation", "IEC61850", "virtual circuit"},
 		}},
@@ -367,6 +370,7 @@ func TestParseEntry(t *testing.T) {
 			journal:                "Applied Sciences (Switzerland)",
 			volume:                 "13",
 			number:                 "16",
+			doi:                    "10.3390/app13169451",
 		}},
 	}
 
