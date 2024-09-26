@@ -391,6 +391,7 @@ func TestParseEntry(t *testing.T) {
 			issn:                   "20763417",
 			language:               "English",
 			abbrev_source_title:    "Appl. Sci.",
+			publication_stage:      "Final",
 			note:                   "Cited by: 3; All Open Access, Gold Open Access",
 		}},
 	}

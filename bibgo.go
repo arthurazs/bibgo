@@ -300,6 +300,8 @@ Loop:
 			parsed_entry.language = element.value
 		case "abbrev_source_title":
 			parsed_entry.abbrev_source_title = element.value
+		case "publication_stage":
+			parsed_entry.publication_stage = element.value
 		case "}", "":
 			break Loop
 		case "type":
