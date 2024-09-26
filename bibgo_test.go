@@ -331,6 +331,7 @@ func TestParseEntry(t *testing.T) {
 			title:      "Formal reliability and failure analysis of ethernet based communication networks in a smart grid substation",
 			year:       2020,
 			volume:     "32",
+			number:     "1",
 			journal:    "Form. Asp. Comput.",
 			keywords:   []string{"Theorem proving", "Higher-order logic", "Fault tree", "Reliability block diagrams", "Smart grid"},
 		}},
@@ -342,6 +343,7 @@ func TestParseEntry(t *testing.T) {
 			title:    "Shared-network scheme of SMV and GOOSE in smart substation",
 			year:     2014,
 			volume:   "2",
+			number:   "4",
 		}},
 		{*strings.NewReader(SciDirText), Entry{
 			category: "article",
@@ -361,6 +363,7 @@ func TestParseEntry(t *testing.T) {
 			year:                   2023,
 			journal:                "Applied Sciences (Switzerland)",
 			volume:                 "13",
+			number:                 "16",
 		}},
 	}
 

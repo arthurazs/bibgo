@@ -266,6 +266,8 @@ Loop:
 			parsed_entry.keywords = splitAndTrim(element.value, ",")
 		case "volume":
 			parsed_entry.volume = element.value
+		case "number":
+			parsed_entry.number = element.value
 		case "}", "":
 			break Loop
 		case "type":
