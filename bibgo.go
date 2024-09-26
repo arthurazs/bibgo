@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -331,4 +332,31 @@ Loop:
 	return parsed_entry, nil
 }
 
-// TODO @arthurazs: add parseEntry, ParseFile
+func ParseFile(filePath string) uint64 {
+	fmt.Printf("Parsing %s...\n", filePath)
+	var raw_data []byte
+	raw_data, err = os.ReadFile(filePath)
+	if err != nil {
+		panic(err)
+	}
+
+	var raw_entry *strings.Reader
+	var counter uint64 = 0
+	var data *strings.Reader = strings.NewReader(string(raw_data))
+	for {
+		raw_entry, err = nextEntry(data)
+		if err == io.EOF {
+			return counter
+		}
+		if err != nil {
+			panic(err)
+		}
+		_, err = parseEntry(raw_entry)
+		if err != nil {
+			fmt.Printf("parseEntry: %v\n", err)
+			return counter
+		}
+		counter++
+	}
+
+}
