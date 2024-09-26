@@ -169,42 +169,42 @@ func getNextElement(entry *strings.Reader) (Element, error) { // TODO should ret
 }
 
 type Entry struct {
-	category               string
-	key                    string
-	author                 []string
-	abstract               string
-	title                  string
-	journal                string
-	year                   uint16
-	keywords               []string
-	volume                 string
-	number                 string
-	pages                  string
-	doi                    string
-	issn                   string
-	month                  string
-	issue_date             string
-	publisher              string
-	address                string
-	url                    string
-	numpages               uint16
-	articleno              uint16
-	note                   string
-	affiliations           []string
-	author_keywords        []string
-	correspondence_address []string
-	language               string
-	abbrev_source_title    string
-	publication_stage      string
-	source                 string
-	coden                  string
-	pmid                   uint32
+	Category              string
+	Key                   string
+	Author                []string
+	Abstract              string
+	Title                 string
+	Journal               string
+	Year                  uint16
+	Keywords              []string
+	Volume                string
+	Number                string
+	Pages                 string
+	Doi                   string
+	Issn                  string
+	Month                 string
+	IssueDate             string
+	Publisher             string
+	Address               string
+	Url                   string
+	Numpages              uint16
+	Articleno             uint16
+	Note                  string
+	Affiliations          []string
+	AuthorKeywords        []string
+	CorrespondenceAddress []string
+	Language              string
+	AbbrevSourceTitle     string
+	PublicationStage      string
+	Source                string
+	Coden                 string
+	Pmid                  uint32
 }
 
 func newEntry(category string, key string) Entry { // TODO should return a pointer?
 	return Entry{
-		category: category,
-		key:      key,
+		Category: category,
+		Key:      key,
 	}
 }
 
@@ -263,66 +263,66 @@ Loop:
 		}
 		switch strings.ToLower(element.key) {
 		case "author":
-			parsed_entry.author = splitAndTrim(element.value, " and ")
+			parsed_entry.Author = splitAndTrim(element.value, " and ")
 		case "abstract":
-			parsed_entry.abstract = element.value
+			parsed_entry.Abstract = element.value
 		case "title":
-			parsed_entry.title = element.value
+			parsed_entry.Title = element.value
 		case "journal":
-			parsed_entry.journal = element.value
+			parsed_entry.Journal = element.value
 		case "year":
-			parsed_entry.year = string2uint16(element.value, "year")
+			parsed_entry.Year = string2uint16(element.value, "year")
 		case "keywords":
-			parsed_entry.keywords = splitAndTrim(element.value, ",")
+			parsed_entry.Keywords = splitAndTrim(element.value, ",")
 		case "volume":
-			parsed_entry.volume = element.value
+			parsed_entry.Volume = element.value
 		case "number":
-			parsed_entry.number = element.value
+			parsed_entry.Number = element.value
 		case "pages":
-			parsed_entry.pages = element.value
+			parsed_entry.Pages = element.value
 		case "doi":
-			parsed_entry.doi = element.value
+			parsed_entry.Doi = element.value
 		case "issn":
-			parsed_entry.issn = element.value
+			parsed_entry.Issn = element.value
 		case "month":
-			parsed_entry.month = element.value
+			parsed_entry.Month = element.value
 		case "issue_date":
-			parsed_entry.issue_date = element.value
+			parsed_entry.IssueDate = element.value
 		case "publisher":
-			parsed_entry.publisher = element.value
+			parsed_entry.Publisher = element.value
 		case "address":
-			parsed_entry.address = element.value
+			parsed_entry.Address = element.value
 		case "url":
-			parsed_entry.url = element.value
+			parsed_entry.Url = element.value
 		case "numpages":
-			parsed_entry.numpages = string2uint16(element.value, "numpages")
+			parsed_entry.Numpages = string2uint16(element.value, "numpages")
 		case "articleno":
-			parsed_entry.articleno = string2uint16(element.value, "articleno")
+			parsed_entry.Articleno = string2uint16(element.value, "articleno")
 		case "note":
-			parsed_entry.note = element.value
+			parsed_entry.Note = element.value
 		case "affiliations":
-			parsed_entry.affiliations = splitAndTrim(element.value, ";")
+			parsed_entry.Affiliations = splitAndTrim(element.value, ";")
 		case "author_keywords":
-			parsed_entry.author_keywords = splitAndTrim(element.value, ";")
+			parsed_entry.AuthorKeywords = splitAndTrim(element.value, ";")
 		case "correspondence_address":
-			parsed_entry.correspondence_address = splitAndTrim(element.value, ";")
+			parsed_entry.CorrespondenceAddress = splitAndTrim(element.value, ";")
 		case "language":
-			parsed_entry.language = element.value
+			parsed_entry.Language = element.value
 		case "abbrev_source_title":
-			parsed_entry.abbrev_source_title = element.value
+			parsed_entry.AbbrevSourceTitle = element.value
 		case "publication_stage":
-			parsed_entry.publication_stage = element.value
+			parsed_entry.PublicationStage = element.value
 		case "source":
-			parsed_entry.source = element.value
+			parsed_entry.Source = element.value
 		case "coden":
-			parsed_entry.coden = element.value
+			parsed_entry.Coden = element.value
 		case "pmid":
-			parsed_entry.pmid = string2uint32(element.value, "pmid")
+			parsed_entry.Pmid = string2uint32(element.value, "pmid")
 		case "}", "":
 			break Loop
 		case "type":
-			if parsed_entry.category != strings.ToLower(element.value) {
-				fmt.Printf("Entry category \"%s\" differs from element type \"%s\"\n", parsed_entry.category, element.value)
+			if parsed_entry.Category != strings.ToLower(element.value) {
+				fmt.Printf("Entry category \"%s\" differs from element type \"%s\"\n", parsed_entry.Category, element.value)
 			}
 		default:
 			fmt.Println("Skipping unknown element: ", element.key)
