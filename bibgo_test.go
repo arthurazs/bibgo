@@ -332,6 +332,7 @@ func TestParseEntry(t *testing.T) {
 			year:       2020,
 			issue_date: "Feb 2020",
 			publisher:  "Springer-Verlag",
+			address:    "Berlin, Heidelberg",
 			volume:     "32",
 			number:     "1",
 			issn:       "0934-5043",

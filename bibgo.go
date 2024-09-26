@@ -280,6 +280,8 @@ Loop:
 			parsed_entry.issue_date = element.value
 		case "publisher":
 			parsed_entry.publisher = element.value
+		case "address":
+			parsed_entry.address = element.value
 		case "}", "":
 			break Loop
 		case "type":
