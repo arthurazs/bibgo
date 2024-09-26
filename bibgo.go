@@ -103,7 +103,7 @@ func getElementKey(entry *strings.Reader) (string, error) {
 		}
 		elementKey.Write(buffer)
 	}
-	return strings.TrimSpace(elementKey.String()), nil
+	return strings.TrimSpace(strings.TrimPrefix(elementKey.String(), ",")), nil
 }
 
 func getElementValue(entry *strings.Reader) (string, error) {
@@ -221,7 +221,8 @@ func ParseEntry(entry *strings.Reader) (Entry, error) { // TODO should return a 
 
 	var parsed_entry Entry = newEntry(category, key)
 	var element Element
-	var count uint8 = 0
+
+Loop:
 	for {
 		element, err = getNextElement(entry)
 		if err != nil {
@@ -231,15 +232,9 @@ func ParseEntry(entry *strings.Reader) (Entry, error) { // TODO should return a 
 		case "author":
 			println(">>", element.value)
 		case "}", "":
-			println("end")
+			break Loop
 		default:
-			println("!!unknown", "|"+element.key+"|")
 		}
-		if element.key == "}" || element.key == "" {
-			break
-		}
-		count++
-		// println(count, element.key, element.value)
 	}
 	return parsed_entry, err
 }
