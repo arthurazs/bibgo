@@ -324,10 +324,19 @@ func TestParseEntry(t *testing.T) {
 		entry       strings.Reader
 		parsedEntry Entry
 	}{
-		{*strings.NewReader(ACMText), Entry{category: "article", key: "1", author: []string{"Ahmad, Waqar", "Hasan, Osman", "Tahar, Sofiene"}}},
-		{*strings.NewReader(IEEEText), Entry{category: "article", key: "1", author: []string{"Wang, Wenlong", "Liu, Minghui", "Zhao, Xicai", "Yang, Gui"}}},
-		{*strings.NewReader(SciDirText), Entry{category: "article", key: "1", author: []string{"Jin Wang", "Zengkai Wang"}}},
-		{*strings.NewReader(ScopusText), Entry{category: "article", key: "1", author: []string{"Chamana, Manohar", "Bhatta, Rabindra", "Schmitt, Konrad", "Shrestha, Rajendra", "Bayne, Stephen"}}},
+		{*strings.NewReader(ACMText), Entry{
+			category: "article", key: "1", author: []string{"Ahmad, Waqar", "Hasan, Osman", "Tahar, Sofiene"},
+		}},
+		{*strings.NewReader(IEEEText), Entry{
+			category: "article", key: "1", author: []string{"Wang, Wenlong", "Liu, Minghui", "Zhao, Xicai", "Yang, Gui"},
+		}},
+		{*strings.NewReader(SciDirText), Entry{
+			category: "article", key: "1",
+			author:   []string{"Jin Wang", "Zengkai Wang"},
+		}},
+		{*strings.NewReader(ScopusText), Entry{
+			category: "article", key: "1", author: []string{"Chamana, Manohar", "Bhatta, Rabindra", "Schmitt, Konrad", "Shrestha, Rajendra", "Bayne, Stephen"},
+		}},
 	}
 
 	for i, c := range cases {

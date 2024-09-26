@@ -2,6 +2,7 @@ package bibgo
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"strings"
 )
@@ -228,15 +229,20 @@ Loop:
 		if err != nil {
 			return Entry{}, errors.New("getNextElement: " + err.Error())
 		}
-		switch element.key {
+		switch strings.ToLower(element.key) {
 		case "author":
-			parsed_entry.author = strings.Split(element.value, " and ")
+			parsed_entry.author = splitAndTrim(element.value, " and ")
 		case "}", "":
 			break Loop
+		case "type":
+			if parsed_entry.category != strings.ToLower(element.value) {
+				fmt.Printf("Entry category \"%s\" differs from element type \"%s\"\n", parsed_entry.category, element.value)
+			}
 		default:
+			fmt.Println("Skipping unknown element: ", element.key)
 		}
 	}
-	return parsed_entry, err
+	return parsed_entry, nil
 }
 
 // TODO @arthurazs: add parseEntry, ParseFile
