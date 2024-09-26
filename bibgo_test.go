@@ -331,6 +331,7 @@ func TestParseEntry(t *testing.T) {
 			title:      "Formal reliability and failure analysis of ethernet based communication networks in a smart grid substation",
 			year:       2020,
 			issue_date: "Feb 2020",
+			publisher:  "Springer-Verlag",
 			volume:     "32",
 			number:     "1",
 			issn:       "0934-5043",
@@ -377,6 +378,7 @@ func TestParseEntry(t *testing.T) {
 			volume:                 "13",
 			number:                 "16",
 			doi:                    "10.3390/app13169451",
+			publisher:              "Multidisciplinary Digital Publishing Institute (MDPI)",
 			issn:                   "20763417",
 		}},
 	}

@@ -278,6 +278,8 @@ Loop:
 			parsed_entry.month = element.value
 		case "issue_date":
 			parsed_entry.issue_date = element.value
+		case "publisher":
+			parsed_entry.publisher = element.value
 		case "}", "":
 			break Loop
 		case "type":
