@@ -147,65 +147,65 @@ func getElementValue(entry *strings.Reader) (string, error) {
 	return strings.TrimSpace(elementValue.String()), nil
 }
 
-type Element struct {
+type bibElement struct {
 	key   string
 	value string
 }
 
-func getNextElement(entry *strings.Reader) (Element, error) { // TODO should return a pointer?
+func getNextElement(entry *strings.Reader) (bibElement, error) { // TODO should return a pointer?
 	var key string
 	var value string
 
 	key, err = getElementKey(entry)
 	if err != nil {
-		return Element{}, err
+		return bibElement{}, err
 	}
 
 	value, err = getElementValue(entry)
 	if err != nil {
-		return Element{}, err
+		return bibElement{}, err
 	}
 
-	return Element{key, value}, err
+	return bibElement{key, value}, err
 }
 
-type Entry struct {
-	Category              string
-	Key                   string
-	Author                []string
-	Abstract              string
-	Title                 string
-	Journal               string
-	Year                  uint16
-	Keywords              []string
-	Volume                string
-	Number                string
-	Pages                 string
-	Doi                   string
-	Issn                  string
-	Month                 string
-	IssueDate             string
-	Publisher             string
-	Address               string
-	Url                   string
-	Numpages              uint16
-	Articleno             uint16
-	Note                  string
-	Affiliations          []string
-	AuthorKeywords        []string
-	CorrespondenceAddress []string
-	Language              string
-	AbbrevSourceTitle     string
-	PublicationStage      string
-	Source                string
-	Coden                 string
-	Pmid                  uint32
+type bibEntry struct {
+	category              string
+	key                   string
+	author                []string
+	abstract              string
+	title                 string
+	journal               string
+	year                  uint16
+	keywords              []string
+	volume                string
+	number                string
+	pages                 string
+	doi                   string
+	issn                  string
+	month                 string
+	issueDate             string
+	publisher             string
+	address               string
+	url                   string
+	numpages              uint16
+	articleno             uint16
+	note                  string
+	affiliations          []string
+	authorKeywords        []string
+	correspondenceAddress []string
+	language              string
+	abbrevSourceTitle     string
+	publicationStage      string
+	source                string
+	coden                 string
+	pmid                  uint32
 }
 
-func newEntry(category string, key string) Entry { // TODO should return a pointer?
-	return Entry{
-		Category: category,
-		Key:      key,
+func newEntry(category string, key string) bibEntry { // TODO should return a pointer?
+	return bibEntry{
+		category: category,
+		key:      key,
 	}
 }
 
@@ -240,90 +240,90 @@ func string2uint32(text string, name string) uint32 {
 	return uint32(value)
 }
 
-func parseEntry(entry *strings.Reader) (Entry, error) { // TODO should return a pointer?
+func parseEntry(entry *strings.Reader) (bibEntry, error) { // TODO should return a pointer?
 	var category, key string
 
 	category, err = getCategory(entry)
 	if err != nil {
-		return Entry{}, errors.New("getCategory: " + err.Error())
+		return bibEntry{}, errors.New("getCategory: " + err.Error())
 	}
 
 	key, err = getKey(entry)
 	if err != nil {
-		return Entry{}, errors.New("getKey: " + err.Error())
+		return bibEntry{}, errors.New("getKey: " + err.Error())
 	}
 
-	var parsed_entry Entry = newEntry(category, key)
-	var element Element
+	var parsed_entry bibEntry = newEntry(category, key)
+	var element bibElement
 
 Loop:
 	for {
 		element, err = getNextElement(entry)
 		if err != nil {
-			return Entry{}, errors.New("getNextElement: " + err.Error())
+			return bibEntry{}, errors.New("getNextElement: " + err.Error())
 		}
 		switch strings.ToLower(element.key) {
 		case "author":
-			parsed_entry.Author = splitAndTrim(element.value, " and ")
+			parsed_entry.author = splitAndTrim(element.value, " and ")
 		case "abstract":
-			parsed_entry.Abstract = element.value
+			parsed_entry.abstract = element.value
 		case "title":
-			parsed_entry.Title = element.value
+			parsed_entry.title = element.value
 		case "journal":
-			parsed_entry.Journal = element.value
+			parsed_entry.journal = element.value
 		case "year":
-			parsed_entry.Year = string2uint16(element.value, "year")
+			parsed_entry.year = string2uint16(element.value, "year")
 		case "keywords":
-			parsed_entry.Keywords = splitAndTrim(element.value, ",")
+			parsed_entry.keywords = splitAndTrim(element.value, ",")
 		case "volume":
-			parsed_entry.Volume = element.value
+			parsed_entry.volume = element.value
 		case "number":
-			parsed_entry.Number = element.value
+			parsed_entry.number = element.value
 		case "pages":
-			parsed_entry.Pages = element.value
+			parsed_entry.pages = element.value
 		case "doi":
-			parsed_entry.Doi = element.value
+			parsed_entry.doi = element.value
 		case "issn":
-			parsed_entry.Issn = element.value
+			parsed_entry.issn = element.value
 		case "month":
-			parsed_entry.Month = element.value
+			parsed_entry.month = element.value
 		case "issue_date":
-			parsed_entry.IssueDate = element.value
+			parsed_entry.issueDate = element.value
 		case "publisher":
-			parsed_entry.Publisher = element.value
+			parsed_entry.publisher = element.value
 		case "address":
-			parsed_entry.Address = element.value
+			parsed_entry.address = element.value
 		case "url":
-			parsed_entry.Url = element.value
+			parsed_entry.url = element.value
 		case "numpages":
-			parsed_entry.Numpages = string2uint16(element.value, "numpages")
+			parsed_entry.numpages = string2uint16(element.value, "numpages")
 		case "articleno":
-			parsed_entry.Articleno = string2uint16(element.value, "articleno")
+			parsed_entry.articleno = string2uint16(element.value, "articleno")
 		case "note":
-			parsed_entry.Note = element.value
+			parsed_entry.note = element.value
 		case "affiliations":
-			parsed_entry.Affiliations = splitAndTrim(element.value, ";")
+			parsed_entry.affiliations = splitAndTrim(element.value, ";")
 		case "author_keywords":
-			parsed_entry.AuthorKeywords = splitAndTrim(element.value, ";")
+			parsed_entry.authorKeywords = splitAndTrim(element.value, ";")
 		case "correspondence_address":
-			parsed_entry.CorrespondenceAddress = splitAndTrim(element.value, ";")
+			parsed_entry.correspondenceAddress = splitAndTrim(element.value, ";")
 		case "language":
-			parsed_entry.Language = element.value
+			parsed_entry.language = element.value
 		case "abbrev_source_title":
-			parsed_entry.AbbrevSourceTitle = element.value
+			parsed_entry.abbrevSourceTitle = element.value
 		case "publication_stage":
-			parsed_entry.PublicationStage = element.value
+			parsed_entry.publicationStage = element.value
 		case "source":
-			parsed_entry.Source = element.value
+			parsed_entry.source = element.value
 		case "coden":
-			parsed_entry.Coden = element.value
+			parsed_entry.coden = element.value
 		case "pmid":
-			parsed_entry.Pmid = string2uint32(element.value, "pmid")
+			parsed_entry.pmid = string2uint32(element.value, "pmid")
 		case "}", "":
 			break Loop
 		case "type":
-			if parsed_entry.Category != strings.ToLower(element.value) {
-				fmt.Printf("Entry category \"%s\" differs from element type \"%s\"\n", parsed_entry.Category, element.value)
+			if parsed_entry.category != strings.ToLower(element.value) {
+				fmt.Printf("Entry category \"%s\" differs from element type \"%s\"\n", parsed_entry.category, element.value)
 			}
 		default:
 			fmt.Println("Skipping unknown element: ", element.key)
@@ -358,5 +358,4 @@ func ParseFile(filePath string) uint64 {
 		}
 		counter++
 	}
-
 }
