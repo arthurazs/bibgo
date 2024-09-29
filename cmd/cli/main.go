@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 func main() {
-	// TODO add elapsed time
 	// TODO add logger
+	start := time.Now()
 	counter := uint64(0)
 
 	path := filepath.Join("data", "input")
@@ -30,5 +31,8 @@ func main() {
 			counter += bibgo.ParseFile(filepath.Join(subFilepath, dir.Name()))
 		}
 	}
-	fmt.Printf("Took     ? ms to parse %d entries\n", counter)
+	elapsed := float64(time.Since(start).Microseconds()) / 1000
+	average := elapsed / float64(counter)
+	fmt.Printf("Took     %7.3f ms to parse %d entries\n", elapsed, counter)
+	fmt.Printf("Averaged %7.3f ms per entry\n", average)
 }
