@@ -346,6 +346,7 @@ func ParseFile(filePath string) uint64 {
 	for {
 		raw_entry, err = nextEntry(data)
 		if err == io.EOF {
+			fmt.Printf("Reached end of file, read %d entries...\n", counter)
 			return counter
 		}
 		if err != nil {
